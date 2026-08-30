@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fa" dir="rtl"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#7c3aed"><title>مدیریت کار</title>
+<link rel="stylesheet" href="style.css"></head>
+<body><div class="app">
+<header class="header"><button class="menu">☰</button><div class="hello"><div class="avatar">👧🏻</div><div><b id="helloName">سلام!</b><small>به کارهای امروزت برس 🌸</small></div></div><button id="notifBtn" class="bell" onclick="requestNotifications()">🔔</button></header>
+
+<main>
+<section id="home" class="page active"><div class="today"><div><small>امروز</small><h2 id="persianToday"></h2></div><span>🗓️</span></div><div id="taskList"></div><p id="empty" class="empty">هنوز کاری نداری 🌷</p><button class="primary" onclick="openTask()">＋ افزودن کار جدید</button></section>
+
+<section id="calendar" class="page"><div class="page-title"><h2>تقویم شمسی</h2><button onclick="moveMonth(-1)">‹</button><button onclick="moveMonth(1)">›</button></div><div class="calendar-card"><h3 id="monthTitle"></h3><div class="week-head">ش<span>ی</span><span>د</span><span>س</span><span>چ</span><span>پ</span><span>ج</span></div><div id="calendarGrid" class="calendar-grid"></div></div><h3>کارهای انتخاب‌شده</h3><div id="calendarTasks"></div></section>
+
+<section id="stats" class="page"><h2>آمار واقعی 📊</h2><div class="stats-top"><div id="ring" class="ring"><b id="percent">0%</b></div><div><h3>پیشرفت کلی</h3><p id="statText"></p></div></div><div class="chart-card"><h3>کارهای ۷ روز اخیر</h3><div id="bars" class="bars"></div><div class="chart-note">هر ستون تعداد کارهای انجام‌شده همان روز است.</div></div><div class="numbers"><div><b id="total">0</b><span>کل</span></div><div><b id="done">0</b><span>انجام شده</span></div><div><b id="remaining">0</b><span>باقی‌مانده</span></div></div></section>
+
+<section id="settings" class="page"><h2>تنظیمات</h2><div class="settings-card"><label>نام صاحب برنامه<input id="userName" placeholder="مثلاً نازنین" onchange="saveName()"></label><label>نام داخل برنامه<input id="appName" value="مدیریت کار" onchange="saveAppName()"></label><button onclick="requestNotifications()">🔔 فعال‌سازی اعلان و آلارم</button><button onclick="toggleTheme()">🌙 حالت روشن / تاریک</button><button onclick="clearTasks()" class="danger">🗑️ حذف همه کارها</button></div><p class="hint">نام داخل برنامه قابل تغییر است. نام زیر آیکون اندروید هنگام ساخت APK روی «مدیریت کار» تنظیم می‌شود.</p></section>
+</main>
+
+<nav><button data-page="home" class="nav active">⌂<span>خانه</span></button><button data-page="calendar" class="nav">▣<span>تقویم</span></button><button class="plus" onclick="openTask()">＋</button><button data-page="stats" class="nav">▥<span>آمار</span></button><button data-page="settings" class="nav">⚙<span>تنظیمات</span></button></nav>
+</div>
+
+<div id="taskModal" class="modal"><div class="sheet"><div class="sheet-head"><button onclick="closeTask()">×</button><h2>افزودن کار جدید</h2></div>
+<input id="title" class="big-input" placeholder="عنوان کار را وارد کنید">
+<div class="row"><label>📅 تاریخ</label><input id="date" type="date"></div>
+<div class="row"><label>🕐 ساعت آلارم</label><input id="time" type="time"></div>
+<div class="row"><label>🚩 اولویت</label><select id="priority"><option>کم</option><option selected>متوسط</option><option>زیاد</option></select></div>
+<textarea id="note" placeholder="یادداشت (اختیاری)"></textarea>
+<button class="primary" onclick="addTask()">ذخیره و تنظیم آلارم</button></div></div>
+
+<script src="https://unpkg.com/@capacitor/core@7/dist/capacitor.js"></script>
+<script src="app.js"></script></body></html>
